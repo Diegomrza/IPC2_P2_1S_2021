@@ -2,6 +2,7 @@ from Nodos import nodo, nodo_encabezado
 from ListasEncabezados import lista_encabezado
 
 class matriz_ortogonal:
+    
     def __init__(self):
         self.encabezado_filas = lista_encabezado()
         self.encabezado_columnas = lista_encabezado()
