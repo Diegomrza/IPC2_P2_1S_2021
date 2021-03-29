@@ -2,17 +2,14 @@ from Nodos import nodo, nodo_encabezado
 from ListasEncabezados import lista_encabezado
 
 class matriz_ortogonal:
-
     def __init__(self):
         self.encabezado_filas = lista_encabezado()
         self.encabezado_columnas = lista_encabezado()
     
     def insertar(self, fila, columna, contenido):
         nuevo_nodo = nodo(fila, columna, contenido)
-
         #Insertar encabezado fila
         efila = self.encabezado_filas.devolver_encabezado(fila)
-        
         if efila == None:
             efila = nodo_encabezado(fila)
             efila.acceso = nuevo_nodo
