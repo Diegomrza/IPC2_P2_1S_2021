@@ -2,10 +2,11 @@ from Nodos import nodo, nodo_encabezado
 
 class lista_encabezado:
 
-    def __init__(self, primero = None):
-        self.primero = primero
+    def __init__(self):
+        self.primero = None
     
     def insertar(self, nuevo):
+
         if self.primero == None:
             self.primero = nuevo
         elif nuevo.id < self.primero.id:
@@ -27,7 +28,7 @@ class lista_encabezado:
                 aux.siquiente = nuevo
                 nuevo.anterior = aux
     
-    def devolver_encabezado(self,id):
+    def devolver_encabezado(self, id):
         aux = self.primero
         while aux != None:
             if aux.id == id:
