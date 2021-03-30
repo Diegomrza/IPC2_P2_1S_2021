@@ -2,8 +2,8 @@ from Nodos import nodo, nodo_encabezado
 
 class lista_encabezado:
 
-    def __init__(self):
-        self.primero = None
+    def __init__(self, primero = None):
+        self.primero = primero
     
     def insertar(self, nuevo):
 
@@ -15,17 +15,17 @@ class lista_encabezado:
             self.primero = nuevo
         else:
             aux = self.primero
-            while aux.siquiente != None:
-                if nuevo.id < aux.siquiente.id:
-                    nuevo.siguiente = aux.siquiente
-                    aux.siquiente.anterior = nuevo
+            while aux.siguiente != None:
+                if nuevo.id < aux.siguiente.id:
+                    nuevo.siguiente = aux.siguiente
+                    aux.siguiente.anterior = nuevo
                     nuevo.anterior = aux
-                    aux.siquiente = nuevo
+                    aux.siguiente = nuevo
                     break
-                aux = aux.siquiente
+                aux = aux.siguiente
 
-            if aux.siquiente == None:
-                aux.siquiente = nuevo
+            if aux.siguiente == None:
+                aux.siguiente = nuevo
                 nuevo.anterior = aux
     
     def devolver_encabezado(self, id):
@@ -33,5 +33,5 @@ class lista_encabezado:
         while aux != None:
             if aux.id == id:
                 return aux
-            aux = aux.siquiente
+            aux = aux.siguiente
         return None

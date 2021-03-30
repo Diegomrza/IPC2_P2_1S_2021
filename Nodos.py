@@ -12,7 +12,6 @@ class nodo:
 class nodo_encabezado:
     def __init__(self, id):
         self.id = id #Numero de fila o columna
-        
         self.siguiente = None
         self.anterior = None
         self.acceso = None #Acceso al nodo interno de la matriz

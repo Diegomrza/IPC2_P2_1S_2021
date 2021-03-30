@@ -60,11 +60,43 @@ class matriz_ortogonal:
                     nuevo_nodo.arriba = aux
 
 
-    def mostrar_ortogonal(self):
-        efilas = self.encabezado_filas.primero
-        while efilas != None:
-            actual = efilas.acceso
+    def recorrerFilas(self):
+        eFila = self.encabezado_filas.primero
+        print('\n************ #Recorrido por filas ************')
+
+        while eFila != None:
+            actual = eFila.acceso
+            print('\nfila ',str(actual.fila))
+            print('Columna  Valor')
             while actual != None:
-                print(str(actual.columna),actual.contenido)
-                actual.actual.derecha
-            efilas = efilas.siguiente
+                print(str(actual.columna)+"    "+actual.contenido)
+                actual = actual.derecha
+            eFila = eFila.siguiente
+        print('*********** fin recorrido por filas ************')
+
+    def recorrerColumnas(self):
+        eColumna = self.encabezado_columnas.primero
+        print('\n************ #Recorrido por columnas ************')
+
+        while eColumna != None:
+
+            actual = eColumna.acceso
+            print('\ncolumna ',str(actual.columna))
+            print('fila  Valor')
+            while actual != None:
+                print(str(actual.fila)+"    "+actual.contenido)
+                actual = actual.abajo
+            eColumna = eColumna.siguiente
+        print('*********** fin recorrido por columnas ************')
+
+'''m = matriz_ortogonal()
+m.insertar(1,0,'Kelly')
+m.insertar(3,1,'Diego')
+m.insertar(2,0,'Chejo')
+m.insertar(0,4,'Jeranio')
+m.insertar(0,5,'Mayorga')
+m.insertar(1,2,'Susy')
+m.insertar(0,0,'Pancho')
+
+m.recorrerFilas()
+m.recorrerColumnas()'''

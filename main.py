@@ -12,39 +12,41 @@ contador_columnas = 1
 
 #Operaciones principales
 def cargar_archivos():
-    ventana = tkinter.Tk()
-    ruta = filedialog.askopenfilename(title="Seleccione un archivo", 
-            filetypes = (("xml files","*.xml"),("all files","*.*")))
-    ventana.destroy()
+
+    try:
+        ventana = tkinter.Tk()
+        ruta = filedialog.askopenfilename(title="Seleccione un archivo", 
+                filetypes = (("xml files","*.xml"),("all files","*.*")))
+        ventana.destroy()
+
+        tree = ET.parse(ruta)
+        root = tree.getroot()
+
+        for elemento in root:
 
 
-    tree = ET.parse(ruta)
-    root = tree.getroot()
+            for subelemento in elemento:
 
 
-    for elemento in root:
+                nombre = ''
 
+                if subelemento.tag == 'nombre':
 
-        for subelemento in elemento:
+                    nombre = subelemento.text
+                    print(nombre)
 
+                if subelemento.tag == 'imagen':
 
-            nombre = ''
+                    lista = subelemento.text.split('\n')
 
-            if subelemento.tag == 'nombre':
+                    for x in lista:
+                        separar_elementos(x)
 
-                nombre = subelemento.text
-                print(nombre)
+                    global contador_filas
+                    contador_filas = 1
+    except IOError:
+        print('Error al leer el archivo')
 
-            if subelemento.tag == 'imagen':
-
-                lista = subelemento.text.split('\n')
-
-                for x in lista:
-                    separar_elementos(x)
-
-
-                global contador_filas
-                contador_filas = 1
                 
 def separar_elementos(cadena):
 
@@ -58,8 +60,7 @@ def separar_elementos(cadena):
             print('Fila: ',str(contador_filas),'\tColumna: ',str(contador_columnas),'\tValor: ',x)
             matriz.insertar(contador_filas,contador_columnas, x)
             contador_columnas += 1
-            matriz.mostrar_ortogonal()
-            break
+            
         else:
             continue
 
@@ -67,7 +68,7 @@ def separar_elementos(cadena):
     if cadena != '':
         contador_filas += 1
 
-    
+    matriz.recorrerFilas()
 
 def operaciones():
     pass
