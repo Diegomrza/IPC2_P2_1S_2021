@@ -16,11 +16,24 @@ class ListaSimple:
                 auxiliar = auxiliar.siguiente
             auxiliar.siguiente = nuevo
 
-
     def mostrar_simple(self):
         aux = self.primero
         while aux != None:
             print(aux.nombre)
+            aux.matriz.recorrerFilas()    
             aux = aux.siguiente
 
+    def verificar_nombre(self,nombre):
+        aux = self.primero
+        while aux != None:
+            if aux.nombre == nombre:
+                return True
+            aux = aux.siguiente
+        return False
 
+    def mostrar_elemento(self, id):
+        aux = self.primero
+        while aux != None:
+            if aux.nombre == id:
+                return aux
+            aux = aux.siguiente

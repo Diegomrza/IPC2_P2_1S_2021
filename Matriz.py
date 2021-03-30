@@ -47,7 +47,7 @@ class matriz_ortogonal:
                 ecolumna.acceso = nuevo_nodo
             else:
                 aux = ecolumna.acceso
-                while aux.derecha != None:
+                while aux.abajo != None:
                     if nuevo_nodo.fila < aux.abajo.fila:
                         nuevo_nodo.abajo = aux.abajo
                         aux.abajo.arriba = nuevo_nodo
@@ -58,6 +58,22 @@ class matriz_ortogonal:
                 if aux.abajo == None:
                     aux.abajo = nuevo_nodo
                     nuevo_nodo.arriba = aux
+
+    def insertar_como_vengan(self,fila,columna,valor):
+        nuevo = nodo(fila,columna,valor)
+        #Insertar encabezado fila
+        efila = self.encabezado_filas.devolver_encabezado(fila)
+        if efila == None:
+            efila = nodo_encabezado(fila)
+            efila.acceso = nuevo
+            self.encabezado_filas.insertar(efila)
+        else:
+            aux = efila.acceso
+            while aux.derecha != None:
+
+                aux = aux.derecha
+            aux.derecha = nuevo
+            nuevo.izquierda = aux
 
 
     def recorrerFilas(self):
@@ -89,14 +105,16 @@ class matriz_ortogonal:
             eColumna = eColumna.siguiente
         print('*********** fin recorrido por columnas ************')
 
-'''m = matriz_ortogonal()
-m.insertar(1,0,'Kelly')
-m.insertar(3,1,'Diego')
-m.insertar(2,0,'Chejo')
-m.insertar(0,4,'Jeranio')
-m.insertar(0,5,'Mayorga')
-m.insertar(1,2,'Susy')
-m.insertar(0,0,'Pancho')
+    
+    def mostrar_uni(self, x, y):
+        eFila = self.encabezado_filas.primero
 
-m.recorrerFilas()
-m.recorrerColumnas()'''
+        while eFila != None:
+            actual = eFila.acceso
+            if eFila.id == x:
+                
+                while actual != None:
+                    if actual.columna == y:
+                        return actual.contenido
+                    actual = actual.derecha
+            eFila = eFila.siguiente
