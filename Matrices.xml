@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <matrices>
  <matriz>
  <nombre>Matriz1</nombre>
  <filas>10</filas>
  <columnas>10</columnas>
  <imagen>
- *----***-*
+*----***-*
 -*-*******
 --*-------
 ***----***
@@ -20,7 +21,8 @@
 <nombre>Matriz2</nombre>
 <filas>4</filas>
 <columnas>5</columnas>
-<imagen>*-*-*
+<imagen>
+*-*-*
 *****
 ***-*
 ***-*

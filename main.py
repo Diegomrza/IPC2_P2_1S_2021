@@ -96,31 +96,80 @@ def operaciones():
     nb.add(p7, text='Agregar rectangulo')
     nb.add(p8, text='Agregar triangulo rectangulo')
 
+    #Rotacion Horizontal
     var1 = Entry(p1)
-    var1.place(x=100,y=100)
+    var1.place(x=100,y=15)
     def obtener1():
         rotacionHorizontal(var1.get())
 
+    #Rotacion Vertical
     var2 = Entry(p2)
-    var2.place(x=100,y=100)
+    var2.place(x=100,y=15)
     def obtener2():
         rotacionVertical(var2.get())
 
+    #Transpuesta
     var3 = Entry(p3)
-    var3.place(x=100,y=100)
+    var3.place(x=100,y=15)
     def obtener3():
         transpuesta(var3.get())
+
+    #Limpiar Zona
+    var4 = Entry(p4)
+    var4.place(x=100,y=15)
+    def obtener4():
+        limpiar_zona(var4.get())
+
+    #Agregar linea horizontal
+    var5 = Entry(p5)
+    var5.place(x=100,y=15)
+    def obtener5():
+        agregar_linea_horizontal(var5.get())
+
+    #Agregar linea vertical
+    var6 = Entry(p6)
+    var6.place(x=100,y=15)
+    def obtener6():
+        agregar_linea_vertical(var6.get())
+
+    #Agregar Rectangulo ---------------------
+    var7 = Entry(p7)
+    var7.place(x=100,y=15)
+
+    Label(p7, text='x').place(x=400,y=15)
+    varRec0 = Entry(p7)
+    varRec0.place(x=250,y=15)
+
+    Label(p7, text='y').place(x=400,y=45)
+    varRec1 = Entry(p7)
+    varRec1.place(x=250,y=45)
+
+    Label(p7, text='Filas').place(x=400,y=75)
+    varRec2 = Entry(p7)
+    varRec2.place(x=250,y=75)
+
+    Label(p7, text='Columnas').place(x=400,y=105)
+    varRec3 = Entry(p7)
+    varRec3.place(x=250,y=105)
+
+    def obtener7():
+        agregar_rectangulo(var7.get(),varRec0.get(), varRec1.get(),varRec2.get(),varRec3.get())
+
+    #Agregar triangulo rectangulo
+    var8 = Entry(p8)
+    var8.place(x=100,y=15)
+    def obtener8():
+        agregar_triangulo_rectangulo(var8.get())
+
 
     Button(p1, text='Elegir matriz', command=obtener1).place(x=10,y=10)
     Button(p2, text='Elegir matriz', command=obtener2).place(x=10,y=10)
     Button(p3, text='Elegir matriz', command=obtener3).place(x=10,y=10)
-    Button(p4, text='Elegir matriz', command=saludar).place(x=10,y=10)
-    Button(p5, text='Elegir matriz', command=saludar).place(x=10,y=10)
-    Button(p6, text='Elegir matriz', command=saludar).place(x=10,y=10)
-    Button(p7, text='Elegir matriz', command=saludar).place(x=10,y=10)
-    Button(p8, text='Elegir matriz', command=saludar).place(x=10,y=10)
-
-
+    Button(p4, text='Elegir matriz', command=obtener4).place(x=10,y=10)
+    Button(p5, text='Elegir matriz', command=obtener5).place(x=10,y=10)
+    Button(p6, text='Elegir matriz', command=obtener6).place(x=10,y=10)
+    Button(p7, text='Elegir matriz', command=obtener7).place(x=10,y=10)
+    Button(p8, text='Elegir matriz', command=obtener8).place(x=10,y=10)
 
     ventanaOperaciones.mainloop()
 
@@ -133,6 +182,7 @@ def ayuda():
 
 #Operaciones --------------------------------------------------------------
 def rotacionHorizontal(nombre_de_matriz):
+    print('Rotacion Horizontal')
     matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
     print(matriz0.nombre)
     matrizAux = matriz_ortogonal()
@@ -145,13 +195,101 @@ def rotacionHorizontal(nombre_de_matriz):
     matrizAux.recorrerFilas()
 
 def rotacionVertical(nombre_de_matriz):
-    print(nombre_de_matriz)
+    print('Rotacion Vertical')
+    matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
+    print(matriz0.nombre)
+    matrizAux = matriz_ortogonal()
+
+    columnas = matriz0.y
+    print('Las filas de la matriz0 son: ', columnas)
+    for x in range(0,matriz0.x):
+        for y in range(0,matriz0.y):
+            contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
+            matrizAux.insertar(x+1,columnas,contenido)
+            columnas -= 1
+        columnas = matriz0.y
+
+    matrizAux.recorrerFilas()
+
 
 def transpuesta(nombre_de_matriz):
-    print(nombre_de_matriz)
+    print('Transpuesta')
+    matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
+    print(matriz0.nombre)
 
-def saludar():
-    print('Hola')
+    matrizAux = matriz_ortogonal()
+
+    for x in range(0,matriz0.x):
+        for y in range(0,matriz0.y):
+            contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
+            matrizAux.insertar(y+1,x+1,contenido)
+
+    matrizAux.recorrerFilas()
+
+
+
+def limpiar_zona(nombre_de_matriz):
+    
+    fila0 = 1
+    columna0 =1
+    fila1 = 3
+    columna1 = 4
+
+    matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
+    print(matriz0.nombre)
+
+    matrizAux = matriz_ortogonal()
+
+    for x in range(0,matriz0.x):
+        for y in range(0,matriz0.y):
+            contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
+            matrizAux.insertar_como_vengan(x+1,y+1,contenido)
+
+    for x in range(fila0,fila1+1):
+        print('X: ',x)
+        for y in range(columna0,columna1+1):
+            print('Y: ',y)
+            matrizAux.reemplazar_valor(x,y,'-')
+
+    matrizAux.recorrerFilas()
+
+def agregar_linea_horizontal(nombre_de_matriz):
+
+    pass
+
+def agregar_linea_vertical(nombre_de_matriz):
+
+    pass
+
+def agregar_rectangulo(nombre_de_matriz, x, y, fila, columna):
+    fila0 = int(x)
+    columna0 = int(y)
+
+    fila1 = fila0+(int(fila)-1)
+    columna1 = columna0+(int(columna)-1)
+
+    matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
+    print(matriz0.nombre)
+
+    matrizAux = matriz_ortogonal()
+
+    for x in range(0,matriz0.x):
+        for y in range(0,matriz0.y):
+            contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
+            matrizAux.insertar_como_vengan(x+1,y+1,contenido)
+
+    for x in range(fila0,fila1+1):
+        #print('X: ',x)
+        for y in range(columna0,columna1+1):
+            #print('Y: ',y)
+            matrizAux.reemplazar_valor(x,y,'*')
+
+    matrizAux.recorrerFilas()
+
+def agregar_triangulo_rectangulo(nombre_de_matriz):
+
+    pass
+
 
 #Fin operaciones ---------------------------------------------------------
 

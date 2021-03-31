@@ -78,17 +78,19 @@ class matriz_ortogonal:
 
     def recorrerFilas(self):
         eFila = self.encabezado_filas.primero
-        print('\n************ #Recorrido por filas ************')
+        print('\n♥♥♥♥♥♥♥♥♥#Recorrido por filas ♥♥♥♥♥♥♥♥♥♥♥')
 
         while eFila != None:
             actual = eFila.acceso
-            print('\nfila ',str(actual.fila))
-            print('Columna  Valor')
+            #print('\nfila ',str(actual.fila))
+            #print('Columna  Valor')
             while actual != None:
-                print(str(actual.columna)+"    "+actual.contenido)
+                #str(actual.columna)+"    "+
+                print(actual.contenido, end='')
                 actual = actual.derecha
             eFila = eFila.siguiente
-        print('*********** fin recorrido por filas ************')
+            print()
+        print('♥♥♥♥♥♥♥♥♥ fin recorrido por filas ♥♥♥♥♥♥♥♥♥')
 
     def recorrerColumnas(self):
         eColumna = self.encabezado_columnas.primero
@@ -116,5 +118,32 @@ class matriz_ortogonal:
                 while actual != None:
                     if actual.columna == y:
                         return actual.contenido
+                    actual = actual.derecha
+            eFila = eFila.siguiente
+    
+    def mostrar_un_nodo(self, x, y):
+        eFila = self.encabezado_filas.primero
+
+        while eFila != None:
+            actual = eFila.acceso
+            if eFila.id == x:
+                
+                while actual != None:
+                    if actual.columna == y:
+                        return actual
+                    actual = actual.derecha
+            eFila = eFila.siguiente
+    
+    def reemplazar_valor(self, x , y, nuevo_valor):
+        eFila = self.encabezado_filas.primero
+
+        while eFila != None:
+            actual = eFila.acceso
+            if eFila.id == x:
+                
+                while actual != None:
+                    if actual.columna == y:
+                        actual.contenido = nuevo_valor
+                        break
                     actual = actual.derecha
             eFila = eFila.siguiente
