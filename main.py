@@ -96,41 +96,85 @@ def operaciones():
     nb.add(p7, text='Agregar rectangulo')
     nb.add(p8, text='Agregar triangulo rectangulo')
 
-    #Rotacion Horizontal
+    #Rotacion Horizontal -------------------
     var1 = Entry(p1)
     var1.place(x=100,y=15)
     def obtener1():
         rotacionHorizontal(var1.get())
 
-    #Rotacion Vertical
+    #Rotacion Vertical ---------------------
     var2 = Entry(p2)
     var2.place(x=100,y=15)
     def obtener2():
         rotacionVertical(var2.get())
 
-    #Transpuesta
+    #Transpuesta ---------------------------
     var3 = Entry(p3)
     var3.place(x=100,y=15)
     def obtener3():
         transpuesta(var3.get())
 
-    #Limpiar Zona
+    #Limpiar Zona --------------------------
     var4 = Entry(p4)
     var4.place(x=100,y=15)
-    def obtener4():
-        limpiar_zona(var4.get())
 
-    #Agregar linea horizontal
+    Label(p4, text='Fila inicio').place(x=400,y=15)
+    varLimp0 = Entry(p4)
+    varLimp0.place(x=250,y=15)
+
+    Label(p4, text='Columna inicio').place(x=400,y=45)
+    varLimp1 = Entry(p4)
+    varLimp1.place(x=250,y=45)
+
+    Label(p4, text='Fila final').place(x=400,y=75)
+    varLimp2 = Entry(p4)
+    varLimp2.place(x=250,y=75)
+
+    Label(p4, text='Columna final').place(x=400,y=105)
+    varLimp3 = Entry(p4)
+    varLimp3.place(x=250,y=105)
+
+
+    def obtener4():
+        limpiar_zona(var4.get(), varLimp0.get(), varLimp1.get(), varLimp2.get(), varLimp3.get())
+
+    #Agregar linea horizontal --------------
     var5 = Entry(p5)
     var5.place(x=100,y=15)
-    def obtener5():
-        agregar_linea_horizontal(var5.get())
 
-    #Agregar linea vertical
+    Label(p5,text='x').place(x=375,y=14)
+    varLH0 = Entry(p5)
+    varLH0.place(x=250,y=15)
+
+    Label(p5, text='y').place(x=375,y=39)
+    varLH1 = Entry(p5)
+    varLH1.place(x=250,y=40)
+
+    Label(p5, text='Elementos').place(x=375,y=64)
+    varLH2 = Entry(p5)
+    varLH2.place(x=250,y=65)
+
+    def obtener5():
+        agregar_linea_horizontal(var5.get(), varLH0.get(), varLH1.get(), varLH2.get())
+
+    #Agregar linea vertical ----------------
     var6 = Entry(p6)
     var6.place(x=100,y=15)
+
+    Label(p6,text='x').place(x=375,y=14)
+    varLV0 = Entry(p6)
+    varLV0.place(x=250,y=15)
+
+    Label(p6, text='y').place(x=375,y=39)
+    varLV1 = Entry(p6)
+    varLV1.place(x=250,y=40)
+
+    Label(p6, text='Elementos').place(x=375,y=64)
+    varLV2 = Entry(p6)
+    varLV2.place(x=250,y=65)
+
     def obtener6():
-        agregar_linea_vertical(var6.get())
+        agregar_linea_vertical(var6.get(), varLV0.get(), varLV1.get(), varLV2.get())
 
     #Agregar Rectangulo ---------------------
     var7 = Entry(p7)
@@ -155,11 +199,28 @@ def operaciones():
     def obtener7():
         agregar_rectangulo(var7.get(),varRec0.get(), varRec1.get(),varRec2.get(),varRec3.get())
 
-    #Agregar triangulo rectangulo
+    #Agregar triangulo rectangulo ----------
     var8 = Entry(p8)
     var8.place(x=100,y=15)
+
+    Label(p8, text='x').place(x=400,y=15)
+    varT0 = Entry(p8)
+    varT0.place(x=250,y=15)
+
+    Label(p8, text='y').place(x=400,y=45)
+    varT1 = Entry(p8)
+    varT1.place(x=250,y=45)
+
+    Label(p8, text='Filas').place(x=400,y=75)
+    varT2 = Entry(p8)
+    varT2.place(x=250,y=75)
+
+    Label(p8, text='Columnas').place(x=400,y=105)
+    varT3 = Entry(p8)
+    varT3.place(x=250,y=105)
+
     def obtener8():
-        agregar_triangulo_rectangulo(var8.get())
+        agregar_triangulo_rectangulo(var8.get(), varT0.get(), varT1.get(), varT2.get(), varT3.get())
 
 
     Button(p1, text='Elegir matriz', command=obtener1).place(x=10,y=10)
@@ -176,11 +237,11 @@ def operaciones():
 def reportes():
     matrices_ortogonales.mostrar_simple()
 
-
 def ayuda():
     pass
 
 #Operaciones --------------------------------------------------------------
+
 def rotacionHorizontal(nombre_de_matriz):
     print('Rotacion Horizontal')
     matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
@@ -211,7 +272,6 @@ def rotacionVertical(nombre_de_matriz):
 
     matrizAux.recorrerFilas()
 
-
 def transpuesta(nombre_de_matriz):
     print('Transpuesta')
     matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
@@ -226,14 +286,12 @@ def transpuesta(nombre_de_matriz):
 
     matrizAux.recorrerFilas()
 
-
-
-def limpiar_zona(nombre_de_matriz):
+def limpiar_zona(nombre_de_matriz, filaA, columnaA, filaB, columnaB):
     
-    fila0 = 1
-    columna0 =1
-    fila1 = 3
-    columna1 = 4
+    fila0 = int(filaA)
+    columna0 = int(columnaA)
+    fila1 = int(filaB)
+    columna1 = int(columnaB)
 
     matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
     print(matriz0.nombre)
@@ -253,13 +311,54 @@ def limpiar_zona(nombre_de_matriz):
 
     matrizAux.recorrerFilas()
 
-def agregar_linea_horizontal(nombre_de_matriz):
+def agregar_linea_horizontal(nombre_de_matriz, x, y, elemento):
 
-    pass
+    fila = int(x)
+    columna = int(y)
+    columna1 = columna + int(elemento)-1
+    
 
-def agregar_linea_vertical(nombre_de_matriz):
+    matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
+    print(matriz0.nombre)
 
-    pass
+    matrizAux = matriz_ortogonal()
+
+    for x in range(0,matriz0.x):
+        for y in range(0,matriz0.y):
+            contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
+            matrizAux.insertar_como_vengan(x+1,y+1,contenido)
+
+    for x in range(0,1):
+        print('X: ',x)
+        for y in range(columna,columna1+1):
+            print('Y: ',y)
+            matrizAux.reemplazar_valor(fila,y,'*')
+
+    matrizAux.recorrerFilas()
+
+def agregar_linea_vertical(nombre_de_matriz, x, y, elemento):
+
+    fila = int(x)
+    columna = int(y)
+    columna1 = columna + int(elemento)-1
+    
+    matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
+    print(matriz0.nombre)
+
+    matrizAux = matriz_ortogonal()
+
+    for x in range(0,matriz0.x):
+        for y in range(0,matriz0.y):
+            contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
+            matrizAux.insertar_como_vengan(x+1,y+1,contenido)
+
+    for x in range(fila,columna1):
+        print('X: ',x)
+        for y in range(0,1):
+            print('Y: ',y)
+            matrizAux.reemplazar_valor(x,columna,'*')
+
+    matrizAux.recorrerFilas()
 
 def agregar_rectangulo(nombre_de_matriz, x, y, fila, columna):
     fila0 = int(x)
@@ -286,11 +385,33 @@ def agregar_rectangulo(nombre_de_matriz, x, y, fila, columna):
 
     matrizAux.recorrerFilas()
 
-def agregar_triangulo_rectangulo(nombre_de_matriz):
+def agregar_triangulo_rectangulo(nombre_de_matriz, x, y, fila, columna):
 
-    pass
+    Finicio = int(x) 
+    Cinicio = int(y)
 
+    filas = Finicio + int(fila)-1
+    columnas = Cinicio + int(columna)-1
 
+    matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
+    print(matriz0.nombre)
+
+    matrizAux = matriz_ortogonal()
+
+    for x in range(0,matriz0.x):
+        for y in range(0,matriz0.y):
+            contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
+            matrizAux.insertar_como_vengan(x+1,y+1,contenido)
+    pos = 1
+    for x in range(Finicio, filas+1):
+        print('X: ',x)
+        for y in range(Cinicio,Cinicio+pos):
+            print('Y: ',y)
+            matrizAux.reemplazar_valor(x, y, '*')
+        pos += 1
+        
+    matrizAux.recorrerFilas()
+            
 #Fin operaciones ---------------------------------------------------------
 
 root = tkinter.Tk()
