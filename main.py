@@ -5,6 +5,7 @@ import xml.etree.ElementTree as ET
 from xml import etree
 from Matriz import matriz_ortogonal
 from ListaSimple import ListaSimple
+from graphviz import Digraph, Graph
 
 matrices_ortogonales = ListaSimple()
 contador_filas = 1
@@ -234,10 +235,35 @@ def operaciones():
 
     ventanaOperaciones.mainloop()
 
+def operaciones_dos_imagenes():
+    ventana_dos_operaciones = tkinter.Tk()
+    ventana_dos_operaciones.title('Dos operaciones')
+    ventana_dos_operaciones.resizable(1,1)
+    ventana_dos_operaciones.geometry('1000x500')
+
+    nb = ttk.Notebook(ventana_dos_operaciones)
+    nb.pack(fill='both',expand='yes')
+
+    p1 = ttk.Frame(nb)
+    p2 = ttk.Frame(nb)
+    p3 = ttk.Frame(nb)
+    p4 = ttk.Frame(nb)
+
+    nb.add(p1, text='Unión')
+    nb.add(p2, text='Intersección')
+    nb.add(p3, text='Diferencia')
+    nb.add(p4, text='Diferencia simétrica')
+
+    ventana_dos_operaciones.mainloop()
+
 def reportes():
-    matrices_ortogonales.mostrar_simple()
+    print('reportes')
 
 def ayuda():
+    print('Jelpmi')
+
+def generar_imagen(matriz,nombre , fila, columna):
+
     pass
 
 #Operaciones --------------------------------------------------------------
@@ -254,6 +280,8 @@ def rotacionHorizontal(nombre_de_matriz):
             matrizAux.insertar_como_vengan(filas,y+1,contenido)
         filas -= 1
     matrizAux.recorrerFilas()
+    
+    generar_imagen(matrizAux,'Resul', matriz0.x, matriz0.y)
 
 def rotacionVertical(nombre_de_matriz):
     print('Rotacion Vertical')
@@ -414,12 +442,37 @@ def agregar_triangulo_rectangulo(nombre_de_matriz, x, y, fila, columna):
             
 #Fin operaciones ---------------------------------------------------------
 
+#Operaciones con dos imágenes ********************************************
+
+def union_AB(matrizA, matrizB):
+    
+    matriz0 = matrices_ortogonales.mostrar_elemento(matrizA)
+    matriz1 = matrices_ortogonales.mostrar_elemento(matrizB)
+
+    matrizAux = matriz_ortogonal()
+
+    print('Nombre Matriz A: ',matriz0.nombre)
+    matriz0.matriz.recorrerFilas()
+    print('Nombre Matriz B: ',matriz1.nombre)
+    matriz1.matriz.recorrerFilas()
+
+def interseccion_AB(matrizA, matrizB):
+    pass
+
+def diferencia_AB(matrizA, matrizB):
+    pass
+
+def diferencia_simetrica_AB(matrizA, matrizB):
+    pass
+
+#Fin operaciones con dos imagenes ***************************************
+
 root = tkinter.Tk()
 root.title('Ventana Principal')
 #root.geometry('1000x600')
 root.resizable(0,0)
 
-frame_principal = tkinter.Frame(root,width='567',height='476',bg='green')
+frame_principal = tkinter.Frame(root,width='751',height='476',bg='green')
 frame_principal.pack()
 
 #SubFrames
@@ -429,8 +482,13 @@ frame0.place(x=25,y=100)
 frame1.place(x=290,y=100)
 
 tkinter.Button(frame_principal,text='Cargar Archivo', command=cargar_archivos, bg='gray',font=('Comic Sans MS',18)).place(x=0,y=0)
+
 tkinter.Button(frame_principal,text='Operaciones', command=operaciones, bg='gray',font=('Comic Sans MS',18)).place(x=190,y=0)
-tkinter.Button(frame_principal,text='Reportes', command=reportes, bg='gray',font=('Comic Sans MS',18)).place(x=352,y=0)
-tkinter.Button(frame_principal,text='Ayuda', command=ayuda, bg='gray',font=('Comic Sans MS',18)).place(x=476,y=0)
+
+tkinter.Button(frame_principal, text='Operaciones 2', command=operaciones_dos_imagenes,bg='gray', font=('Comic Sans MS',18)).place(x=352,y=0)
+
+tkinter.Button(frame_principal,text='Reportes', command=reportes, bg='gray',font=('Comic Sans MS',18)).place(x=536,y=0)
+
+tkinter.Button(frame_principal,text='Ayuda', command=ayuda, bg='gray',font=('Comic Sans MS',18)).place(x=660,y=0)
 
 root.mainloop()

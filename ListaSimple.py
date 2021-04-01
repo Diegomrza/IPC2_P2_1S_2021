@@ -3,6 +3,7 @@ from NodoSimple import nodo_simple
 class ListaSimple:
     def __init__(self):
         self.primero = None
+        self.tamanio = 0
         
     def insertar_simple(self, nombre, x, y, matriz):
         nuevo = nodo_simple(x, y, nombre)
@@ -37,3 +38,10 @@ class ListaSimple:
             if aux.nombre == id:
                 return aux
             aux = aux.siguiente
+
+    def obtener_tamanio(self):
+        aux = self.primero
+        while aux != None:
+            self.tamanio += 1
+            aux = aux.siguiente
+        return self.tamanio
