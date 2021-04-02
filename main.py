@@ -10,7 +10,7 @@ from graphviz import Digraph, Graph
 matrices_ortogonales = ListaSimple()
 contador_filas = 1
 contador_columnas = 1
-
+cont = 0
 #Operaciones principales
 def cargar_archivos():
     global contador_filas, contador_columnas
@@ -62,7 +62,6 @@ def cargar_archivos():
                     matrices_ortogonales.insertar_simple(nombre,fila,columna,matriz)
             else:
                 print('Los tamaños de la matriz no coinciden')  
-
     except IOError:
         print('Error al leer el archivo')
 
@@ -70,7 +69,7 @@ def operaciones():
     ventanaOperaciones = tkinter.Tk()
     ventanaOperaciones.title('Operaciones')
     ventanaOperaciones.resizable(1,1)
-    ventanaOperaciones.geometry('880x500')
+    ventanaOperaciones.geometry('880x160')
 
     '''frameOperaciones = tkinter.Frame(ventanaOperaciones,width='567',height='476',bg='green')
     frameOperaciones.pack()'''
@@ -100,20 +99,57 @@ def operaciones():
     #Rotacion Horizontal -------------------
     var1 = Entry(p1)
     var1.place(x=100,y=15)
+
     def obtener1():
-        rotacionHorizontal(var1.get())
+        nombres = rotacionHorizontal(var1.get())
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.title('Horizontal')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='right')
+
+        rt.mainloop()
 
     #Rotacion Vertical ---------------------
     var2 = Entry(p2)
     var2.place(x=100,y=15)
     def obtener2():
-        rotacionVertical(var2.get())
+        nombres = rotacionVertical(var2.get())
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.title('Vertical')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='right')
+
+        rt.mainloop()
 
     #Transpuesta ---------------------------
     var3 = Entry(p3)
     var3.place(x=100,y=15)
     def obtener3():
-        transpuesta(var3.get())
+        nombres = transpuesta(var3.get())
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.title('Transpuesta')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='right')
+
+        rt.mainloop()
 
     #Limpiar Zona --------------------------
     var4 = Entry(p4)
@@ -137,7 +173,19 @@ def operaciones():
 
 
     def obtener4():
-        limpiar_zona(var4.get(), varLimp0.get(), varLimp1.get(), varLimp2.get(), varLimp3.get())
+        nombres = limpiar_zona(var4.get(), varLimp0.get(), varLimp1.get(), varLimp2.get(), varLimp3.get())
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.title('Limpiar Zona')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='right')
+
+        rt.mainloop()
 
     #Agregar linea horizontal --------------
     var5 = Entry(p5)
@@ -156,7 +204,19 @@ def operaciones():
     varLH2.place(x=250,y=65)
 
     def obtener5():
-        agregar_linea_horizontal(var5.get(), varLH0.get(), varLH1.get(), varLH2.get())
+        nombres = agregar_linea_horizontal(var5.get(), varLH0.get(), varLH1.get(), varLH2.get())
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.title('Agregar linea horizontal')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='right')
+
+        rt.mainloop()
 
     #Agregar linea vertical ----------------
     var6 = Entry(p6)
@@ -175,7 +235,19 @@ def operaciones():
     varLV2.place(x=250,y=65)
 
     def obtener6():
-        agregar_linea_vertical(var6.get(), varLV0.get(), varLV1.get(), varLV2.get())
+        nombres = agregar_linea_vertical(var6.get(), varLV0.get(), varLV1.get(), varLV2.get())
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.title('Agregar linea vertical')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='right')
+
+        rt.mainloop()
 
     #Agregar Rectangulo ---------------------
     var7 = Entry(p7)
@@ -198,7 +270,19 @@ def operaciones():
     varRec3.place(x=250,y=105)
 
     def obtener7():
-        agregar_rectangulo(var7.get(),varRec0.get(), varRec1.get(),varRec2.get(),varRec3.get())
+        nombres = agregar_rectangulo(var7.get(),varRec0.get(), varRec1.get(),varRec2.get(),varRec3.get())
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.title('Agregar rectangulo')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='right')
+
+        rt.mainloop()
 
     #Agregar triangulo rectangulo ----------
     var8 = Entry(p8)
@@ -221,8 +305,19 @@ def operaciones():
     varT3.place(x=250,y=105)
 
     def obtener8():
-        agregar_triangulo_rectangulo(var8.get(), varT0.get(), varT1.get(), varT2.get(), varT3.get())
+        nombres = agregar_triangulo_rectangulo(var8.get(), varT0.get(), varT1.get(), varT2.get(), varT3.get())
+        imagenes = nombres.split(',')
 
+        rt = Toplevel()
+        rt.title('Agregar triangulo rectangulo')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='right')
+
+        rt.mainloop()
 
     Button(p1, text='Elegir matriz', command=obtener1).place(x=10,y=10)
     Button(p2, text='Elegir matriz', command=obtener2).place(x=10,y=10)
@@ -239,7 +334,7 @@ def operaciones_dos_imagenes():
     ventana_dos_operaciones = tkinter.Tk()
     ventana_dos_operaciones.title('Dos operaciones')
     ventana_dos_operaciones.resizable(1,1)
-    ventana_dos_operaciones.geometry('1000x500')
+    ventana_dos_operaciones.geometry('400x150')
 
     nb = ttk.Notebook(ventana_dos_operaciones)
     nb.pack(fill='both',expand='yes')
@@ -254,6 +349,61 @@ def operaciones_dos_imagenes():
     nb.add(p3, text='Diferencia')
     nb.add(p4, text='Diferencia simétrica')
 
+    #panel 1
+    Label(p1, text='Matriz A').place(x=30, y=15)
+    var1 = Entry(p1)
+    var1.place(x=100,y=15)
+
+    Label(p1, text='Matriz B').place(x=30, y=50)
+    var2 = Entry(p1)
+    var2.place(x=100,y=50)
+
+    #panel 2
+    Label(p2, text='Matriz A').place(x=30, y=15)
+    var3 = Entry(p2)
+    var3.place(x=100,y=15)
+
+    Label(p2, text='Matriz B').place(x=30, y=50)
+    var4 = Entry(p2)
+    var4.place(x=100,y=50)
+
+    #panel 3
+    Label(p3, text='Matriz A').place(x=30, y=15)
+    var5 = Entry(p3)
+    var5.place(x=100,y=15)
+
+    Label(p3, text='Matriz B').place(x=30, y=50)
+    var6 = Entry(p3)
+    var6.place(x=100,y=50)
+
+    #panel 4
+    Label(p4, text='Matriz A').place(x=30, y=15)
+    var7 = Entry(p4)
+    var7.place(x=100,y=15)
+
+    Label(p4, text='Matriz B').place(x=30, y=50)
+    var8 = Entry(p4)
+    var8.place(x=100,y=50)
+
+    def obtener_union():
+        union_AB(var1.get(), var2.get())
+
+    def obtener_interseccion():
+        interseccion_AB(var3.get(), var4.get())
+
+    def obtener_diferencia():
+        diferencia_AB(var5.get(), var6.get())
+
+    def obtener_diferencia_simetrica():
+        diferencia_simetrica_AB(var7.get(), var8.get())
+
+    Button(p1, text='Elegir matriz', command=obtener_union).place(x=250,y=25)
+    Button(p2, text='Elegir matriz', command=obtener_interseccion).place(x=250,y=25)
+    Button(p3, text='Elegir matriz', command=obtener_diferencia).place(x=250,y=25)
+    Button(p4, text='Elegir matriz', command=obtener_diferencia_simetrica).place(x=250,y=25)
+
+    
+
     ventana_dos_operaciones.mainloop()
 
 def reportes():
@@ -262,16 +412,63 @@ def reportes():
 def ayuda():
     print('Jelpmi')
 
-def generar_imagen(matriz,nombre , fila, columna):
+def generar_imagen_original(matriz,nombre , fila, columna):
+    global cont
+    cadena = '< <table><tr>'+'<td>'+nombre+'</td>'
+    for c in range(0,columna):
+        cadena += '<td>'+str(c+1)+'</td>'
+    cadena+='</tr>'
 
-    pass
+    for x in range(0,fila):
+        cadena += '<tr>'+ '<td>'+str(x+1)+'</td>'
+        for y in range(0,columna):
+            if matriz.mostrar_uni(x+1,y+1) == '-':
+                cadena += '<td></td>'
+            else:
+                cadena += '<td>'+ str(matriz.mostrar_uni(x+1,y+1)) +'</td>'
+        cadena += '</tr>'
+    cadena += '</table> >'
+
+    g = Digraph('G',format='png')
+    g.attr(label='Imagen original')
+    g.node('S',label=cadena,shape='none')
+    nombre = 'grafo'+str(cont)
+    g.render(nombre)
+    cont += 1
+
+    return nombre
+
+def generar_imagen(matriz,nombre , fila, columna):
+    global cont
+
+    cadena = '< <table><tr>'+'<td>'+nombre+'</td>'
+
+    for c in range(0,columna):
+        cadena += '<td>'+str(c+1)+'</td>'
+    cadena+='</tr>'
+
+    for x in range(0,fila):
+        cadena += '<tr>'+ '<td>'+str(x+1)+'</td>'
+        for y in range(0,columna):
+            if matriz.mostrar_uni(x+1,y+1) == '-':
+                cadena += '<td></td>'
+            else:
+                cadena += '<td>'+ str(matriz.mostrar_uni(x+1,y+1)) +'</td>'
+        cadena += '</tr>'
+    cadena += '</table> >'
+
+    g = Digraph('G',format='png')
+    g.attr(label='Resultado')
+    g.node('S',label=cadena,shape='none')
+    nombre = 'grafo'+str(cont)
+    g.render(nombre)
+    cont += 1
+    return nombre
 
 #Operaciones --------------------------------------------------------------
 
 def rotacionHorizontal(nombre_de_matriz):
-    print('Rotacion Horizontal')
     matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
-    print(matriz0.nombre)
     matrizAux = matriz_ortogonal()
     filas = matriz0.x
     for x in range(0,matriz0.x):
@@ -279,18 +476,17 @@ def rotacionHorizontal(nombre_de_matriz):
             contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
             matrizAux.insertar_como_vengan(filas,y+1,contenido)
         filas -= 1
-    matrizAux.recorrerFilas()
-    
-    generar_imagen(matrizAux,'Resul', matriz0.x, matriz0.y)
+    #matrizAux.recorrerFilas()
+
+    nombreO = generar_imagen_original(matriz0.matriz,matriz0.nombre,matriz0.x, matriz0.y)
+    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.x, matriz0.y)
+    return nombreO+','+nombreE
 
 def rotacionVertical(nombre_de_matriz):
-    print('Rotacion Vertical')
     matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
-    print(matriz0.nombre)
     matrizAux = matriz_ortogonal()
 
     columnas = matriz0.y
-    print('Las filas de la matriz0 son: ', columnas)
     for x in range(0,matriz0.x):
         for y in range(0,matriz0.y):
             contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
@@ -298,13 +494,13 @@ def rotacionVertical(nombre_de_matriz):
             columnas -= 1
         columnas = matriz0.y
 
-    matrizAux.recorrerFilas()
+    #matrizAux.recorrerFilas()
+    nombreO = generar_imagen_original(matriz0.matriz,matriz0.nombre,matriz0.x, matriz0.y)
+    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.x, matriz0.y)
+    return nombreO+','+nombreE
 
 def transpuesta(nombre_de_matriz):
-    print('Transpuesta')
     matriz0 = matrices_ortogonales.mostrar_elemento(nombre_de_matriz)
-    print(matriz0.nombre)
-
     matrizAux = matriz_ortogonal()
 
     for x in range(0,matriz0.x):
@@ -312,7 +508,10 @@ def transpuesta(nombre_de_matriz):
             contenido = matriz0.matriz.mostrar_uni(x+1,y+1)
             matrizAux.insertar(y+1,x+1,contenido)
 
-    matrizAux.recorrerFilas()
+    #matrizAux.recorrerFilas()
+    nombreO = generar_imagen_original(matriz0.matriz,matriz0.nombre,matriz0.x, matriz0.y)
+    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.x, matriz0.y)
+    return nombreO+','+nombreE
 
 def limpiar_zona(nombre_de_matriz, filaA, columnaA, filaB, columnaB):
     
@@ -337,7 +536,9 @@ def limpiar_zona(nombre_de_matriz, filaA, columnaA, filaB, columnaB):
             print('Y: ',y)
             matrizAux.reemplazar_valor(x,y,'-')
 
-    matrizAux.recorrerFilas()
+    nombreO = generar_imagen_original(matriz0.matriz,matriz0.nombre,matriz0.x, matriz0.y)
+    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.x, matriz0.y)
+    return nombreO+','+nombreE
 
 def agregar_linea_horizontal(nombre_de_matriz, x, y, elemento):
 
@@ -362,7 +563,9 @@ def agregar_linea_horizontal(nombre_de_matriz, x, y, elemento):
             print('Y: ',y)
             matrizAux.reemplazar_valor(fila,y,'*')
 
-    matrizAux.recorrerFilas()
+    nombreO = generar_imagen_original(matriz0.matriz,matriz0.nombre,matriz0.x, matriz0.y)
+    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.x, matriz0.y)
+    return nombreO+','+nombreE
 
 def agregar_linea_vertical(nombre_de_matriz, x, y, elemento):
 
@@ -386,7 +589,9 @@ def agregar_linea_vertical(nombre_de_matriz, x, y, elemento):
             print('Y: ',y)
             matrizAux.reemplazar_valor(x,columna,'*')
 
-    matrizAux.recorrerFilas()
+    nombreO = generar_imagen_original(matriz0.matriz,matriz0.nombre,matriz0.x, matriz0.y)
+    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.x, matriz0.y)
+    return nombreO+','+nombreE
 
 def agregar_rectangulo(nombre_de_matriz, x, y, fila, columna):
     fila0 = int(x)
@@ -411,7 +616,9 @@ def agregar_rectangulo(nombre_de_matriz, x, y, fila, columna):
             #print('Y: ',y)
             matrizAux.reemplazar_valor(x,y,'*')
 
-    matrizAux.recorrerFilas()
+    nombreO = generar_imagen_original(matriz0.matriz,matriz0.nombre,matriz0.x, matriz0.y)
+    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.x, matriz0.y)
+    return nombreO+','+nombreE
 
 def agregar_triangulo_rectangulo(nombre_de_matriz, x, y, fila, columna):
 
@@ -438,7 +645,9 @@ def agregar_triangulo_rectangulo(nombre_de_matriz, x, y, fila, columna):
             matrizAux.reemplazar_valor(x, y, '*')
         pos += 1
         
-    matrizAux.recorrerFilas()
+    nombreO = generar_imagen_original(matriz0.matriz,matriz0.nombre,matriz0.x, matriz0.y)
+    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.x, matriz0.y)
+    return nombreO+','+nombreE
             
 #Fin operaciones ---------------------------------------------------------
 
@@ -472,14 +681,9 @@ root.title('Ventana Principal')
 #root.geometry('1000x600')
 root.resizable(0,0)
 
-frame_principal = tkinter.Frame(root,width='751',height='476',bg='green')
+frame_principal = tkinter.Frame(root,width='751',height='250',bg='green')
 frame_principal.pack()
 
-#SubFrames
-frame0 = tkinter.Frame(frame_principal,width='250',height='330',bg='red')
-frame1 = tkinter.Frame(frame_principal,width='250',height='330',bg='blue')
-frame0.place(x=25,y=100)
-frame1.place(x=290,y=100)
 
 tkinter.Button(frame_principal,text='Cargar Archivo', command=cargar_archivos, bg='gray',font=('Comic Sans MS',18)).place(x=0,y=0)
 
