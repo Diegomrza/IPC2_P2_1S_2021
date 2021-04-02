@@ -28,4 +28,55 @@
 ***-*
 </imagen>
 </matriz>
+<matriz>
+ <nombre>Matriz3</nombre>
+ <filas>10</filas>
+ <columnas>10</columnas>
+ <imagen>
+-****---*-
+*-*-------
+**-*******
+---****---
+----------
+***----***
+*****-----
+---*******
+----***--*
+-----*****
+</imagen>
+</matriz>
+<matriz>
+ <nombre>A</nombre>
+ <filas>9</filas>
+ <columnas>8</columnas>
+ <imagen>
+--------
+-***-***
+--*--***
+--*--*--
+-***-*--
+--------
+-***-***
+-*-----*
+-***-***
+</imagen>
+</matriz>
+<matriz>
+ <nombre>B</nombre>
+ <filas>9</filas>
+ <columnas>8</columnas>
+ <imagen>
+--------
+-**-----
+-**-----
+-**-----
+-**-----
+--------
+-**-----
+-**-----
+--------
+</imagen>
+</matriz>
+
+
 </matrices>

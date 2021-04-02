@@ -386,16 +386,81 @@ def operaciones_dos_imagenes():
     var8.place(x=100,y=50)
 
     def obtener_union():
-        union_AB(var1.get(), var2.get())
+        nombres = union_AB(var1.get(), var2.get())
+
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.resizable(0,0)
+        rt.title('Union')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='left')
+
+        miImagen3 = PhotoImage(file=imagenes[2]+'.png')
+        Label(rt, image=miImagen3).pack(side='left')
+
+        rt.mainloop()
+
 
     def obtener_interseccion():
-        interseccion_AB(var3.get(), var4.get())
+        nombres = interseccion_AB(var3.get(), var4.get())
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.resizable(0,0)
+        rt.title('Intersección')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='left')
+
+        miImagen3 = PhotoImage(file=imagenes[2]+'.png')
+        Label(rt, image=miImagen3).pack(side='left')
+
+        rt.mainloop()
 
     def obtener_diferencia():
-        diferencia_AB(var5.get(), var6.get())
+        nombres = diferencia_AB(var5.get(), var6.get())
+        imagenes = nombres.split(',')
 
+        rt = Toplevel()
+        rt.resizable(0,0)
+        rt.title('Intersección')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='left')
+
+        miImagen3 = PhotoImage(file=imagenes[2]+'.png')
+        Label(rt, image=miImagen3).pack(side='left')
+
+        rt.mainloop()
     def obtener_diferencia_simetrica():
-        diferencia_simetrica_AB(var7.get(), var8.get())
+        nombres = diferencia_simetrica_AB(var7.get(), var8.get())
+        imagenes = nombres.split(',')
+
+        rt = Toplevel()
+        rt.resizable(0,0)
+        rt.title('Intersección')
+
+        miImagen = PhotoImage(file=imagenes[0]+'.png')
+        Label(rt, image=miImagen).pack(side='left')
+
+        miImagen2 = PhotoImage(file=imagenes[1]+'.png')
+        Label(rt, image=miImagen2).pack(side='left')
+
+        miImagen3 = PhotoImage(file=imagenes[2]+'.png')
+        Label(rt, image=miImagen3).pack(side='left')
+
+        rt.mainloop()
 
     Button(p1, text='Elegir matriz', command=obtener_union).place(x=250,y=25)
     Button(p2, text='Elegir matriz', command=obtener_interseccion).place(x=250,y=25)
@@ -411,6 +476,9 @@ def reportes():
 
 def ayuda():
     print('Jelpmi')
+
+
+#Generar imagenes --------------*****
 
 def generar_imagen_original(matriz,nombre , fila, columna):
     global cont
@@ -465,6 +533,9 @@ def generar_imagen(matriz,nombre , fila, columna):
     cont += 1
     return nombre
 
+#Fin generar imagenes ----------*****
+
+
 #Operaciones --------------------------------------------------------------
 
 def rotacionHorizontal(nombre_de_matriz):
@@ -510,7 +581,7 @@ def transpuesta(nombre_de_matriz):
 
     #matrizAux.recorrerFilas()
     nombreO = generar_imagen_original(matriz0.matriz,matriz0.nombre,matriz0.x, matriz0.y)
-    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.x, matriz0.y)
+    nombreE = generar_imagen(matrizAux,matriz0.nombre, matriz0.y, matriz0.x)
     return nombreO+','+nombreE
 
 def limpiar_zona(nombre_de_matriz, filaA, columnaA, filaB, columnaB):
@@ -655,24 +726,149 @@ def agregar_triangulo_rectangulo(nombre_de_matriz, x, y, fila, columna):
 
 def union_AB(matrizA, matrizB):
     
+    filas = 0
+    columnas = 0
+
     matriz0 = matrices_ortogonales.mostrar_elemento(matrizA)
     matriz1 = matrices_ortogonales.mostrar_elemento(matrizB)
 
     matrizAux = matriz_ortogonal()
 
-    print('Nombre Matriz A: ',matriz0.nombre)
-    matriz0.matriz.recorrerFilas()
-    print('Nombre Matriz B: ',matriz1.nombre)
-    matriz1.matriz.recorrerFilas()
+    if matriz0.x > matriz1.x:
+        filas = matriz0.x
+    else:
+        filas = matriz1.x
+
+    if matriz0.y > matriz1.y:
+        columnas = matriz0.y
+    else:
+        columnas = matriz1.y
+
+    for x in range(0, filas):
+        for y in range(0, columnas):
+            if matriz0.matriz.mostrar_uni(x+1,y+1) == '*' or matriz1.matriz.mostrar_uni(x+1,y+1) == '*':
+                matrizAux.insertar(x+1,y+1,'*')
+            else:
+                matrizAux.insertar(x+1,y+1,'-')
+    
+    nombreA = generar_imagen_original(matriz0.matriz, matriz0.nombre,matriz0.x, matriz0.y)
+    nombreB = generar_imagen_original(matriz1.matriz, matriz1.nombre,matriz1.x, matriz1.y)
+    nombreC = generar_imagen(matrizAux,'Union', filas, columnas)
+    return nombreA+','+nombreB+','+nombreC
 
 def interseccion_AB(matrizA, matrizB):
-    pass
+    filas = 0
+    columnas = 0
+
+    matriz0 = matrices_ortogonales.mostrar_elemento(matrizA)
+    matriz1 = matrices_ortogonales.mostrar_elemento(matrizB)
+
+    matrizAux = matriz_ortogonal()
+
+    if matriz0.x > matriz1.x:
+        filas = matriz0.x
+    else:
+        filas = matriz1.x
+
+    if matriz0.y > matriz1.y:
+        columnas = matriz0.y
+    else:
+        columnas = matriz1.y
+
+    for x in range(0, filas):
+        for y in range(0, columnas):
+            if matriz0.matriz.mostrar_uni(x+1,y+1) == '*' and matriz1.matriz.mostrar_uni(x+1,y+1) == '*':
+                matrizAux.insertar(x+1,y+1,'*')
+            else:
+                matrizAux.insertar(x+1,y+1,'-')
+    
+    nombreA = generar_imagen_original(matriz0.matriz, matriz0.nombre,matriz0.x, matriz0.y)
+    nombreB = generar_imagen_original(matriz1.matriz, matriz1.nombre,matriz1.x, matriz1.y)
+    nombreC = generar_imagen(matrizAux,'Intersección', filas, columnas)
+    return nombreA+','+nombreB+','+nombreC
 
 def diferencia_AB(matrizA, matrizB):
-    pass
+    filas = 0
+    columnas = 0
+
+    matriz0 = matrices_ortogonales.mostrar_elemento(matrizA)
+    matriz1 = matrices_ortogonales.mostrar_elemento(matrizB)
+
+    matrizAux = matriz_ortogonal()
+
+    if matriz0.x > matriz1.x:
+        filas = matriz0.x
+    else:
+        filas = matriz1.x
+
+    if matriz0.y > matriz1.y:
+        columnas = matriz0.y
+    else:
+        columnas = matriz1.y
+
+    for x in range(0, filas):
+        for y in range(0, columnas):
+            if matriz0.matriz.mostrar_uni(x+1,y+1) == '*' and matriz1.matriz.mostrar_uni(x+1,y+1) != '*':
+                matrizAux.insertar(x+1,y+1,'*')
+            else:
+                matrizAux.insertar(x+1,y+1,'-')
+    
+    nombreA = generar_imagen_original(matriz0.matriz, matriz0.nombre,matriz0.x, matriz0.y)
+    nombreB = generar_imagen_original(matriz1.matriz, matriz1.nombre,matriz1.x, matriz1.y)
+    nombreC = generar_imagen(matrizAux,'Diferencia', filas, columnas)
+    return nombreA+','+nombreB+','+nombreC
 
 def diferencia_simetrica_AB(matrizA, matrizB):
-    pass
+    filas = 0
+    columnas = 0
+
+    matriz0 = matrices_ortogonales.mostrar_elemento(matrizA)
+    matriz1 = matrices_ortogonales.mostrar_elemento(matrizB)
+
+    matrizAux = matriz_ortogonal()
+    matrizAux2 = matriz_ortogonal()
+
+    matrizFinal = matriz_ortogonal()
+
+    if matriz0.x > matriz1.x:
+        filas = matriz0.x
+    else:
+        filas = matriz1.x
+
+    if matriz0.y > matriz1.y:
+        columnas = matriz0.y
+    else:
+        columnas = matriz1.y
+
+    for x in range(0, filas):
+        for y in range(0, columnas):
+            if matriz0.matriz.mostrar_uni(x+1,y+1) == '*' and matriz1.matriz.mostrar_uni(x+1,y+1) != '*':
+                matrizAux.insertar(x+1,y+1,'*')
+            else:
+                matrizAux.insertar(x+1,y+1,'-')
+    
+    for x in range(0, filas):
+        for y in range(0, columnas):
+            if matriz1.matriz.mostrar_uni(x+1,y+1) == '*' and matriz0.matriz.mostrar_uni(x+1,y+1) != '*':
+                matrizAux2.insertar(x+1,y+1,'*')
+            else:
+                matrizAux2.insertar(x+1,y+1,'-')
+
+    for x in range(0, filas):
+        for y in range(0, columnas):
+            if matrizAux.mostrar_uni(x+1,y+1) == '*' or matrizAux2.mostrar_uni(x+1,y+1) == '*':
+                matrizFinal.insertar(x+1,y+1,'*')
+            else:
+                matrizFinal.insertar(x+1,y+1,'-')
+
+    matrizAux.recorrerFilas()
+    matrizAux2.recorrerFilas()
+    
+    
+    nombreA = generar_imagen_original(matriz0.matriz, matriz0.nombre,matriz0.x, matriz0.y)
+    nombreB = generar_imagen_original(matriz1.matriz, matriz1.nombre,matriz1.x, matriz1.y)
+    nombreC = generar_imagen(matrizFinal,'Dif. Simetrica', filas, columnas)
+    return nombreA+','+nombreB+','+nombreC
 
 #Fin operaciones con dos imagenes ***************************************
 
@@ -683,7 +879,6 @@ root.resizable(0,0)
 
 frame_principal = tkinter.Frame(root,width='751',height='250',bg='green')
 frame_principal.pack()
-
 
 tkinter.Button(frame_principal,text='Cargar Archivo', command=cargar_archivos, bg='gray',font=('Comic Sans MS',18)).place(x=0,y=0)
 
