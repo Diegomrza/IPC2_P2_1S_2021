@@ -147,3 +147,6 @@ class matriz_ortogonal:
                         break
                     actual = actual.derecha
             eFila = eFila.siguiente
+
+    def obtener_nombres(self):
+        pass

@@ -45,3 +45,5 @@ class ListaSimple:
             self.tamanio += 1
             aux = aux.siguiente
         return self.tamanio
+    
+    
