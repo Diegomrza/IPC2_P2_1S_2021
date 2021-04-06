@@ -7,6 +7,7 @@ from Matriz import matriz_ortogonal
 from ListaSimple import ListaSimple
 from graphviz import Digraph, Graph
 from datetime import datetime, date, time
+import webbrowser as wb
 
 matrices_ortogonales = ListaSimple()
 contador_filas = 1
@@ -21,7 +22,7 @@ cadenaHtml = '''<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte</title>
 </head>
-<body>
+<body style="background:linear-gradient(50deg, crimson,sienna, royalblue, indianred, purple); background-size: cover;">
 
     <h1>Matrices: </h1>'''
 
@@ -608,19 +609,19 @@ def ayuda():
         ventanaInfo.mainloop()
     
     def documentacion():
-        print('Jelou')
+        wb.open_new(r'Informe\Proyecto2 - 201901429.docx')
 
 
     ventana_ayuda = Tk()
     ventana_ayuda.title('Ayuda')
     ventana_ayuda.geometry('300x100')
     ventana_ayuda.resizable(0,0)
-    frame_ayuda = Frame(ventana_ayuda, bg='red', width=500, height=500)
+    frame_ayuda = Frame(ventana_ayuda, bg='white', width=500, height=500)
     
     Button(frame_ayuda, text='Información', command=informacion, font=('Comic Sans MS',10)).place(x=50,y=40)
     Button(frame_ayuda, text='Documentación', command=documentacion, font=('Comic Sans MS',10)).place(x=150,y=40)
 
-    frame_ayuda.config(bg='red')
+    frame_ayuda.config(bg='white')
     frame_ayuda.pack()
 
     
