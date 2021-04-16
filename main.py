@@ -516,7 +516,7 @@ def operaciones_dos_imagenes():
 
         rt = Toplevel()
         rt.resizable(0,0)
-        rt.title('Intersección')
+        rt.title('Diferencia')
 
         miImagen = PhotoImage(file=imagenes[0]+'.png')
         Label(rt, image=miImagen).pack(side='left')
@@ -534,7 +534,7 @@ def operaciones_dos_imagenes():
 
         rt = Toplevel()
         rt.resizable(0,0)
-        rt.title('Intersección')
+        rt.title('Diferencia Simetrica')
 
         miImagen = PhotoImage(file=imagenes[0]+'.png')
         Label(rt, image=miImagen).pack(side='left')
@@ -1033,7 +1033,9 @@ def union_AB(matrizA, matrizB):
     filas = 0
     columnas = 0
 
+    #matriz a
     matriz0 = matrices_ortogonales.mostrar_elemento(matrizA)
+    #matriz b
     matriz1 = matrices_ortogonales.mostrar_elemento(matrizB)
 
     matrizAux = matriz_ortogonal()
